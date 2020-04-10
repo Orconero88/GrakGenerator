@@ -10,7 +10,7 @@ public class GrakGenerator {
         int size = 0;
 
         size = randomGenerator.nextInt(100) + 1;
-
+        System.out.println(size);
         // System.out.println(size);
         // System.out.println(hundred);
 
@@ -27,15 +27,17 @@ public class GrakGenerator {
 
         String grak = randomLetter();
         for (int i = 0; i < size; i++) {
-            String lastLetter = Character.toString(grak.charAt(grak.length() - 1));
-            if (lastLetter == "a" || lastLetter == "e" || lastLetter == "i" || lastLetter == "o" || lastLetter == "u")
-                grak = grak.concat(randomLetterBut(lastLetter)); // aggiunge lettera a caso tranne l'ultima inserita
-            else {
+            char lastLetter = grak.charAt(grak.length() - 1);
+            if (lastLetter == 'a' || lastLetter == 'e' || lastLetter == 'i' || lastLetter == 'o' || lastLetter == 'u') {
+                System.out.println(lastLetter); // aggiunge lettera a caso tranne l'ultima inserita
+                grak = grak.concat(randomLetterBut(lastLetter));
+            } else {
                 if (grak.length() > 1) {
-                    String secondLast = Character.toString(grak.charAt(grak.length() - 2));
-                    if (secondLast == "a" || secondLast == "e" || secondLast == "i" || secondLast == "o"
-                            || secondLast == "u") {
-                        grak = grak.concat(randomLetter());
+                    char secondLast = grak.charAt(grak.length() - 2);
+                    if (secondLast == 'a' || secondLast == 'e' || secondLast == 'i' || secondLast == 'o'
+                            || secondLast == 'u') {
+                        grak = grak.concat(randomLetterBut(lastLetter)); // randomLetter() modificato in
+                                                                         // randomLetterBut(lastLetter)
                     } else {
                         grak = grak.concat(randomVocals());
 
@@ -50,9 +52,6 @@ public class GrakGenerator {
         grak = grak.concat("ak");
         System.out.println(grak);
     }
-
-    // vocals();
-    // consonants();
 
     private static String randomLetter() {
         String[] alfabeth = { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r",
@@ -69,19 +68,19 @@ public class GrakGenerator {
     }
 
     private static String randomConsonants() {
-       String[] consonants = { "b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "v",
+        String[] consonants = { "b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "v",
                 "w", "x", "y", "z" };
         int consIndex = randomGenerator.nextInt(consonants.length);
         return consonants[consIndex];
     }
 
-    private static String randomLetterBut(String a) {
+    private static String randomLetterBut(char a) {
         String[] alfabeth = { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r",
                 "s", "t", "u", "v", "w", "x", "y", "z" };
 
         List<String> alphabethBut = new ArrayList<String>(Arrays.asList(alfabeth));
-        alphabethBut.remove(a);
-
+        alphabethBut.remove(Character.toString(a));
+        System.out.println(alphabethBut);
         int wordIndex = randomGenerator.nextInt(alphabethBut.size());
         return alphabethBut.get(wordIndex);
     }
