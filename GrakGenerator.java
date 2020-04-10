@@ -1,5 +1,7 @@
 import java.util.Random;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Arrays;
 
 public class GrakGenerator {
     static Random randomGenerator = new Random();
@@ -27,20 +29,20 @@ public class GrakGenerator {
         for (int i = 0; i < size; i++) {
             String lastLetter = Character.toString(grak.charAt(grak.length() - 1));
             if (lastLetter == "a" || lastLetter == "e" || lastLetter == "i" || lastLetter == "o" || lastLetter == "u")
-                grak =grak.concat(randomLetterBut(lastLetter)); // aggiunge lettera a caso tranne l'ultima inserita
+                grak = grak.concat(randomLetterBut(lastLetter)); // aggiunge lettera a caso tranne l'ultima inserita
             else {
                 if (grak.length() > 1) {
-                    String secondLast= Character.toString(grak.charAt(grak.length() - 2));
+                    String secondLast = Character.toString(grak.charAt(grak.length() - 2));
                     if (secondLast == "a" || secondLast == "e" || secondLast == "i" || secondLast == "o"
                             || secondLast == "u") {
-                      grak=  grak.concat(randomLetter());
+                        grak = grak.concat(randomLetter());
                     } else {
-                       grak= grak.concat(randomVocals());
+                        grak = grak.concat(randomVocals());
 
                     }
-                    
-                }
-                else { grak= grak.concat(randomLetter());
+
+                } else {
+                    grak = grak.concat(randomLetter());
                 }
 
             }
@@ -51,13 +53,11 @@ public class GrakGenerator {
 
     // vocals();
     // consonants();
-   
 
     private static String randomLetter() {
         String[] alfabeth = { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r",
                 "s", "t", "u", "v", "w", "x", "y", "z" };
         int wordIndex = randomGenerator.nextInt(alfabeth.length);
-        System.out.println(wordIndex);
         return alfabeth[wordIndex];
 
     }
@@ -65,15 +65,13 @@ public class GrakGenerator {
     private static String randomVocals() {
         String[] vocals = { "a", "e", "i", "o", "u" };
         int vocalIndex = randomGenerator.nextInt(vocals.length);
-        System.out.println(vocalIndex);
         return vocals[vocalIndex];
     }
 
     private static String randomConsonants() {
-        String[] consonants = { "b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "v",
+       String[] consonants = { "b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "v",
                 "w", "x", "y", "z" };
         int consIndex = randomGenerator.nextInt(consonants.length);
-        System.out.println(consIndex);
         return consonants[consIndex];
     }
 
@@ -81,10 +79,10 @@ public class GrakGenerator {
         String[] alfabeth = { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r",
                 "s", "t", "u", "v", "w", "x", "y", "z" };
 
-        List<String> alphabetBut = new ArrayList<String>(Arrays.asList(alfabeth));
-        alphabetBut.remove(a);
+        List<String> alphabethBut = new ArrayList<String>(Arrays.asList(alfabeth));
+        alphabethBut.remove(a);
 
-        int wordIndex = randomGenerator.nextInt(alfabethBut.size());
-        return alfabethBut.get(wordIndex);
+        int wordIndex = randomGenerator.nextInt(alphabethBut.size());
+        return alphabethBut.get(wordIndex);
     }
 }
